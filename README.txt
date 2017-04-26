@@ -227,4 +227,66 @@ invalid syntax
 >>> variadic({'a':5, 'b':'x'}, *{'a':5, 'b':'x'}, **{'a':5, 'b':'x'})
 Positional: ({'b': 'x', 'a': 5}, 'b', 'a')
 Keyword: {'a': 5, 'b': 'x'}
-""" 
+"""
+def all_together(x, y, z=1, *nums, indent=True, spaces=4, **options):
+    print("x:", x)
+    print("y:", y)
+    print("z:", z)
+    print("nums:", nums)
+    print("indent:", indent)
+    print("spaces:", spaces)
+    print("options:", options)
+
+"""
+all_together(2) - brak argumentu y
+>>> all_together(2, 5, 7, 8, indent=False)
+x: 2
+y: 5
+z: 7
+nums: (8,)
+indent: False
+spaces: 4
+options: {}
+>>> all_together(2, 5, 7, 6, indent=None)
+x: 2
+y: 5
+z: 7
+nums: (6,)
+indent: None
+spaces: 4
+options: {}
+>>> all_together() - brak argumentu x y.
+>>> all_together(indent=True, 3, 4, 5) - Nie poprawna kolejnośc argumentów
+all_together(**{'indent': False}, scope='maximum') - Niepoprawna składnia
+>>> all_together(dict(x=0, y=1), *range(10))
+x: {'y': 1, 'x': 0}
+y: 0
+z: 1
+nums: (2, 3, 4, 5, 6, 7, 8, 9)
+indent: True
+spaces: 4
+options: {}
+all_together(**dict(x=0, y=1), *range(10)) - Niepoprawna składnia
+>>> all_together(*range(10), **dict(x=0, y=1)) - Wiele wartości do argumentu y
+>>> all_together([1, 2], {3:4})
+x: [1, 2]
+y: {3: 4}
+z: 1
+nums: ()
+indent: True
+spaces: 4
+options: {}
+>>> all_together(8, 9, 10, *[2, 4, 6], x=7, spaces=0, **{'a':5, 'b':'x'}) - wiele wartości do argumentu x
+>>> all_together(8, 9, 10, *[2, 4, 6], spaces=0, **{'a':[4,5], 'b':'x'})
+x: 8
+y: 9
+z: 10
+nums: (2, 4, 6)
+indent: True
+spaces: 0
+options: {'b': 'x', 'a': [4, 5]}
+all_together(8, 9, *[2, 4, 6], *dict(z=1), spaces=0, **{'a':[4,5], 'b':'x'}) - Niepoprawna składnia.
+
+"""
+def speak_excitedly(Str):
+    pass
