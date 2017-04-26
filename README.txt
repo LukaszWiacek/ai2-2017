@@ -114,3 +114,117 @@ s = [0] * 3
     s[0] += [1]
     print(s)
       Wynik: [[1], [1], [1]]
+
+## Plik lab3-functions.py
+
+def print_two(a, b):
+    print("Arguments: {0} and {1}".format(a, b))
+"""print_two()
+#print_two() missing 2 required positional arguments: 'a' and 'b'
+#>>> print_two(4, 1)
+Arguments: 4 and 1
+>>> print_two(41)
+print_two() missing 1 required positional argument: 'b'
+>>> print_two(a=4, 1)
+print_two() got multiple values for argument 'a'
+>>> print_two(4, 1, 1)
+print_two() takes 2 positional arguments but 3 were given
+>>> print_two(a=4, b=1)
+Arguments: 4 and 1
+>>> print_two(b=1, a=4)
+Arguments: 4 and 1
+>>> print_two(1, a=1)
+print_two() got multiple values for argument 'a'
+>>> print_two(4, 1, b=1)
+print_two() got multiple values for argument 'b'
+"""
+def keyword_args(a, b=1, c='X', d=None):
+    print("a:", a)
+    print("b:", b)
+    print("c:", c)
+    print("d:", d)
+"""
+>>> keyword_args(5)
+a: 5
+b: 1
+c: X
+d: None
+>>> keyword_args(5, 8)
+a: 5
+b: 8
+c: X
+d: None
+>>> keyword_args(5, 2, c=4)
+a: 5
+b: 2
+c: 4
+d: None
+>>> keyword_args(5, 0, 1)
+a: 5
+b: 0
+c: 1
+d: None
+>>> keyword_args(5, 2, d=8, c=4)
+a: 5
+b: 2
+c: 4
+d: 8
+>>> keyword_args(5, 2, 0, 1, "")
+keyword_args() takes from 1 to 4 positional arguments but 5 were given
+>>> keyword_args(c=7, 1)
+SyntaxError: non-keyword arg after keyword arg
+>>> keyword_args(c=7, a=1)
+a: 1
+b: 1
+c: 7
+d: None
+>>> keyword_args(5, 2, [], 5)
+a: 5
+b: 2
+c: []
+d: 5
+>>> keyword_args(1, 7, e=6)
+keyword_args() got an unexpected keyword argument 'e'
+>>> keyword_args(1, c=7)
+a: 1
+b: 1
+c: 7
+d: None
+>>> keyword_args(5, 2, b=4)
+Keyword_args() got multiple values for argument 'b'
+
+""" 
+def variadic(*args, **kwargs):
+    print("Positional:", args)
+    print("Keyword:", kwargs)
+"""
+>>> variadic(2, 3, 5, 7)
+Positional: (2, 3, 5, 7)
+Keyword: {}
+>>> variadic(1, 1, n=1)
+Positional: (1, 1)
+Keyword: {'n': 1}
+>>> variadic(n=1, 2, 3)
+non-keyword arg after keyword arg
+>>> variadic()
+Positional: ()
+Keyword: {}
+>>> variadic(cs="Computer Science", pd="Product Design")
+Positional: ()
+Keyword: {'pd': 'Product Design', 'cs': 'Computer Science'}
+>>> variadic(cs="Computer Science", cs="CompSci", cs="CS")
+SyntaxError: keyword argument repeated
+>>> variadic(5, 8, k=1, swap=2)
+Positional: (5, 8)
+Keyword: {'k': 1, 'swap': 2}
+>>> variadic(8, *[3, 4, 5], k=1, **{'a':5, 'b':'x'})
+Positional: (8, 3, 4, 5)
+Keyword: {'k': 1, 'b': 'x', 'a': 5}
+>>> variadic(*[8, 3], *[4, 5], k=1, **{'a':5, 'b':'x'})
+invalid syntax
+>>> variadic(*[3, 4, 5], 8, *(4, 1), k=1, **{'a':5, 'b':'x'})
+invalid syntax
+>>> variadic({'a':5, 'b':'x'}, *{'a':5, 'b':'x'}, **{'a':5, 'b':'x'})
+Positional: ({'b': 'x', 'a': 5}, 'b', 'a')
+Keyword: {'a': 5, 'b': 'x'}
+""" 
